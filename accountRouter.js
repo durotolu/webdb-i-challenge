@@ -5,7 +5,8 @@ const db = require('./data/dbConfig.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    db('accounts')
+    const { limit, sortby, sortdir } = req.query
+    db('accounts').limit(limit)//.orderBy(sortby, sortdir)
         .then(accounts => {
             res.json(accounts);
         })
